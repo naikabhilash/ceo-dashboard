@@ -56,6 +56,10 @@ st.markdown("""
     /* Section headers */
     .section-header { font-size: 0.7rem; color: #52525b; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.5rem; border-bottom: 1px solid #1c1c1e; padding-bottom: 0.4rem; }
 
+    /* Filter expander */
+    [data-testid="stExpander"] { background: #111113; border: 1px solid #27272a; border-radius: 10px; margin-bottom: 1rem; }
+    [data-testid="stExpander"] summary { color: #a1a1aa; font-size: 0.85rem; }
+
     /* Ensure KPI card content is not clipped */
     [data-testid="stHorizontalBlock"] [data-testid="column"] [data-testid="stMarkdownContainer"] { overflow: visible !important; }
 
@@ -194,16 +198,16 @@ df_inv = inventory_drag_data()
 # ---------------------------------------------------------------------------
 # SIDEBAR FILTERS
 # ---------------------------------------------------------------------------
-with st.sidebar:
-    st.markdown("#### 🎛️ Dashboard Filters")
-    st.markdown("---")
-
-    sel_regions = st.multiselect("Region", REGIONS, default=REGIONS)
-    sel_years = st.multiselect("Fiscal Year", sorted(df_all["year"].unique()), default=sorted(df_all["year"].unique()))
-    sel_biz = st.multiselect("Business Segment", ["Personal Systems", "Printing"], default=["Personal Systems", "Printing"])
-    currency_mode = st.radio("Currency View", ["Reported", "Constant Currency"], index=0, horizontal=True)
-
-    st.markdown("---")
+with st.expander("🎛️ Dashboard Filters", expanded=False):
+    fc1, fc2, fc3, fc4 = st.columns(4)
+    with fc1:
+        sel_regions = st.multiselect("Region", REGIONS, default=REGIONS)
+    with fc2:
+        sel_years = st.multiselect("Fiscal Year", sorted(df_all["year"].unique()), default=sorted(df_all["year"].unique()))
+    with fc3:
+        sel_biz = st.multiselect("Business Segment", ["Personal Systems", "Printing"], default=["Personal Systems", "Printing"])
+    with fc4:
+        currency_mode = st.radio("Currency View", ["Reported", "Constant Currency"], index=0, horizontal=True)
     st.caption("💡 **Constant Currency** removes FX volatility, isolating organic operational performance.")
 
 # ---------------------------------------------------------------------------
