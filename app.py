@@ -290,13 +290,7 @@ def kpi_card(label, value, delta=None, delta_label="", sub=""):
     delta_arrow = "▲" if delta and delta >= 0 else "▼"
     delta_html = f'<div class="{delta_cls}">{delta_arrow} {abs(delta):.1f}% {delta_label}</div>' if delta is not None else ""
     sub_html = f'<div class="kpi-sub">{sub}</div>' if sub else ""
-    return f"""
-    <div class="kpi-card">
-        <div class="kpi-label">{label}</div>
-        <div class="kpi-value">{value}</div>
-        {delta_html}
-        {sub_html}
-    </div>"""
+    return f'<div class="kpi-card"><div class="kpi-label">{label}</div><div class="kpi-value">{value}</div>{delta_html}{sub_html}</div>'
 
 with k1:
     st.markdown(kpi_card(
