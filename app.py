@@ -36,9 +36,9 @@ st.markdown("""
     }
     .kpi-label { font-size: 0.7rem; color: #71717a; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 0.3rem; }
     .kpi-value { font-size: 1.75rem; font-weight: 700; color: #f4f4f5; line-height: 1.1; }
-    .kpi-delta-up { font-size: 0.8rem; color: #10b981; }
-    .kpi-delta-down { font-size: 0.8rem; color: #ef4444; }
-    .kpi-sub { font-size: 0.65rem; color: #52525b; margin-top: 0.25rem; }
+    .kpi-delta-up { font-size: 0.8rem; color: #10b981; margin-top: 0.3rem; }
+    .kpi-delta-down { font-size: 0.8rem; color: #ef4444; margin-top: 0.3rem; }
+    .kpi-sub { font-size: 0.7rem; color: #a1a1aa; margin-top: 0.3rem; padding-bottom: 0.25rem; }
 
     /* Narrative box */
     .exec-narrative {
@@ -55,6 +55,9 @@ st.markdown("""
 
     /* Section headers */
     .section-header { font-size: 0.7rem; color: #52525b; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.5rem; border-bottom: 1px solid #1c1c1e; padding-bottom: 0.4rem; }
+
+    /* Ensure KPI card content is not clipped */
+    [data-testid="stHorizontalBlock"] [data-testid="column"] [data-testid="stMarkdownContainer"] { overflow: visible !important; }
 
     /* Hide Streamlit branding */
     #MainMenu, footer, header { visibility: hidden; }
